@@ -1,0 +1,1 @@
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `shasku5d_shask`.`vw_spec` AS select `shasku5d_shask`.`spec`.`id` AS `id_spec`,`shasku5d_shask`.`spec`.`code` AS `Код`, `shasku5d_shask`.`spec`.`name` AS `Наименование специальности` from `shask`.`spec`

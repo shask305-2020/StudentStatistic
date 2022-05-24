@@ -1,0 +1,1 @@
+CREATE VIEW `vw_spec` AS SELECT `id`, `code` AS 'Код специальности', `name` AS 'Наименование специальности' FROM `spec`
