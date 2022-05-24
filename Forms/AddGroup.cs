@@ -11,7 +11,7 @@ namespace StudentStatistic.Forms
         private int id_spec = 1;
         private int kurs;
         private string name;
-        //private bool completed = false;
+        private bool completed = false;
         
         //Конструктор для добавления
         public AddGroup()
@@ -60,7 +60,7 @@ namespace StudentStatistic.Forms
                 name = txName.Text;
 
                 ClassMySQL.AddRow_Group(id_spec, kurs, name);
-                //completed = true;
+                completed = true;
                 Close();
             }
         }
