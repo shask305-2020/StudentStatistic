@@ -34,7 +34,6 @@
             this.btEdit = new System.Windows.Forms.Button();
             this.btAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btImport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +59,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(710, 375);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // btDelete
             // 
@@ -95,7 +93,6 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btImport);
             this.panel1.Controls.Add(this.btDelete);
             this.panel1.Controls.Add(this.btEdit);
             this.panel1.Controls.Add(this.btAdd);
@@ -103,15 +100,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(710, 56);
             this.panel1.TabIndex = 7;
-            // 
-            // btImport
-            // 
-            this.btImport.Location = new System.Drawing.Point(605, 3);
-            this.btImport.Name = "btImport";
-            this.btImport.Size = new System.Drawing.Size(100, 48);
-            this.btImport.TabIndex = 1;
-            this.btImport.Text = "Импорт";
-            this.btImport.UseVisualStyleBackColor = true;
             // 
             // GuideSpec
             // 
@@ -127,7 +115,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Справочник \"Специальности\"";
             this.Activated += new System.EventHandler(this.GuideSpec_Activated);
-            this.Load += new System.EventHandler(this.GuideSpec_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -141,6 +128,5 @@
         private System.Windows.Forms.Button btEdit;
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btImport;
     }
 }

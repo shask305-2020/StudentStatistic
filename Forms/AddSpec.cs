@@ -11,7 +11,7 @@ namespace StudentStatistic.Forms
         private int specId; //ИД для редактирования записи в БД (Edit)
         private string mode;   //Режим добавления (Add) или изменения (Edit)
 
-        //Перменные на форме
+        //Переменные на форме
         private string code;
         private string name;
         private string sokr;

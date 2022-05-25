@@ -37,7 +37,7 @@ namespace StudentStatistic.Forms
         {
             if (txtBase.Text != "")
             {
-                ClassMySQL.AddBase(txtBase.Text);
+                ClassMySQL.AddRow("base", txtBase.Text);
                 txtBase.Clear();
                 LoadBase();
             }
@@ -54,7 +54,7 @@ namespace StudentStatistic.Forms
                 if (result == DialogResult.Yes)
                 {
                     int id = Convert.ToInt32(listBase.SelectedValue);
-                    ClassMySQL.DeleteLevel(id);
+                    ClassMySQL.DeleteRow("level", id);
                     LoadBase();
                 }
             }

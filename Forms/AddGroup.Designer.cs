@@ -35,13 +35,14 @@
             this.cbSpec = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.numKurs = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numKurs)).BeginInit();
             this.SuspendLayout();
             // 
             // btAdd
             // 
             this.btAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btAdd.Location = new System.Drawing.Point(526, 47);
+            this.btAdd.Location = new System.Drawing.Point(529, 47);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(146, 26);
             this.btAdd.TabIndex = 4;
@@ -119,12 +120,23 @@
             0,
             0});
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(681, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(28, 28);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AddGroup
             // 
             this.AcceptButton = this.btAdd;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 88);
+            this.ClientSize = new System.Drawing.Size(715, 88);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.numKurs);
             this.Controls.Add(this.cbSpec);
             this.Controls.Add(this.btAdd);
@@ -138,7 +150,7 @@
             this.Name = "AddGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Группа: Новая";
-            this.Load += new System.EventHandler(this.AddGroup_Load);
+            this.Activated += new System.EventHandler(this.AddGroup_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.numKurs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -153,5 +165,6 @@
         private System.Windows.Forms.ComboBox cbSpec;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numKurs;
+        private System.Windows.Forms.Button button1;
     }
 }

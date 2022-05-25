@@ -29,7 +29,7 @@ namespace StudentStatistic.Forms
         {
             if (txtLevel.Text != "")
             {
-                ClassMySQL.AddLevel(txtLevel.Text);
+                ClassMySQL.AddRow("level", txtLevel.Text);
                 txtLevel.Clear();
                 LoadLevel();
             }
@@ -46,7 +46,7 @@ namespace StudentStatistic.Forms
                 if (result == DialogResult.Yes)
                 {
                     int id = Convert.ToInt32(listLevel.SelectedValue);
-                    ClassMySQL.DeleteLevel(id);
+                    ClassMySQL.DeleteRow("level", id);
                     LoadLevel();
                 }
             }
