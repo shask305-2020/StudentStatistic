@@ -42,5 +42,11 @@ namespace StudentStatistic
             GuideGroups groups = new GuideGroups();
             groups.ShowDialog();
         }
+
+        private void menuStudentsGuide_Click(object sender, EventArgs e)
+        {
+            GuideStudents students = new GuideStudents();
+            students.ShowDialog();
+        }
     }
 }

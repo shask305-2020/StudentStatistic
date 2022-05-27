@@ -151,6 +151,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Группа: Новая";
             this.Activated += new System.EventHandler(this.AddGroup_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddGroup_FormClosing);
+            this.Load += new System.EventHandler(this.AddGroup_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddGroup_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.numKurs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

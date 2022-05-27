@@ -17,10 +17,15 @@ namespace StudentStatistic.Forms
         {
             InitializeComponent();
         }
+
+        private void GuideGroups_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
         private void GuideGroups_Activated(object sender, EventArgs e)
         {
             LoadData();
-            dataGridView1.Rows[0].Cells[1].Selected = true;
         }
 
         //Загрузка данных в DGV
@@ -78,7 +83,6 @@ namespace StudentStatistic.Forms
                     int rowIndex = dataGridView1.CurrentCell.RowIndex;
                     int id = Convert.ToInt32(dataGridView1.Rows[rowIndex].Cells[0].Value);
                     ClassMySQL.DeleteRow("groups", id);
-                    //LoadData();
                 }
             }
             else
@@ -86,6 +90,5 @@ namespace StudentStatistic.Forms
                 MyMessage.MessageNullRow();
             }
         }
-        
     }
 }

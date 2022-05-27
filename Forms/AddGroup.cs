@@ -26,23 +26,19 @@ namespace StudentStatistic.Forms
         public AddGroup(int id)
         {
             InitializeComponent();
-            mode = "Edit";
             id_group = id;
             LoadText();
             btAdd.Text = "Изменить";    //Меняем название кнопки (Добавить -> Изменить)
+            mode = "Edit";
         }
 
-        //Загрузка данных в поля ввода (для режима Edit)
+        //Загрузка данных в поля ввода (Edit)
         private void LoadText()
         {
             DataTable table = ClassMySQL.LoadTable_Filtre("groups", id_group);
             id_spec = (int)table.Rows[0]["id_spec"];
             kurs = (int)table.Rows[0]["kurs"];
             name = table.Rows[0]["name"].ToString();
-
-            cbSpec.SelectedValue = id_spec;
-            txName.Text = name;
-            numKurs.Value = kurs;
         }
 
         //Загрузка специальностей в ComboBox
@@ -56,6 +52,19 @@ namespace StudentStatistic.Forms
         private void AddGroup_Load(object sender, EventArgs e)
         {
             LoadSpec();
+            KeyPreview = true;  //Позволяет отлавливать нажатие кнопок (для клавиши Escape)
+
+            //Изменение заголовка на форме в зависимости от режима работы
+            if (mode == "Add")
+                Text = "Группа: Новая";
+            else
+            {
+                Text = "Группа: Редактирование записи";
+                cbSpec.SelectedValue = id_spec;
+                txName.Text = name;
+                numKurs.Value = kurs;
+            }    
+                
         }
         private void btAdd_Click(object sender, EventArgs e)
         {
@@ -85,6 +94,8 @@ namespace StudentStatistic.Forms
                 completed = true;
                 Close();
             }
+            else
+                MyMessage.MessageInformation();
         }
 
         //Редактирование записи
@@ -107,10 +118,7 @@ namespace StudentStatistic.Forms
         private bool Valid()
         {
             if (txName.Text == "")
-            {
-                MyMessage.MessageInformation();
                 return false;
-            }
             else return true;
         }
 
@@ -123,6 +131,28 @@ namespace StudentStatistic.Forms
         private void AddGroup_Activated(object sender, EventArgs e)
         {
             LoadSpec();
+            if (mode == "Edit")
+                cbSpec.SelectedValue = id_spec;
+        }
+
+        //Выход из окна
+        //Подтверждение выхода
+        private void AddGroup_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!completed && Valid())
+            {
+                DialogResult result = MyMessage.MessageClose();
+                if (result == DialogResult.No)
+                    e.Cancel = true;
+            }
+        }
+        //Обработка нажатия клавиши Escape (Выход из режима редактирования без сохранения)
+        private void AddGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
         }
     }
 }

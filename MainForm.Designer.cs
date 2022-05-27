@@ -48,15 +48,15 @@
             this.справочникиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1237, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(928, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // настройкиToolStripMenuItem
@@ -64,13 +64,13 @@
             this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuSettingsApp});
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.настройкиToolStripMenuItem.Text = "Настройки";
             // 
             // menuSettingsApp
             // 
             this.menuSettingsApp.Name = "menuSettingsApp";
-            this.menuSettingsApp.Size = new System.Drawing.Size(254, 26);
+            this.menuSettingsApp.Size = new System.Drawing.Size(203, 22);
             this.menuSettingsApp.Text = "Настройки программы";
             this.menuSettingsApp.Click += new System.EventHandler(this.menuSettingsApp_Click);
             // 
@@ -81,37 +81,38 @@
             this.menuGroupGuide,
             this.menuStudentsGuide});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
-            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
+            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.справочникиToolStripMenuItem.Text = "Справочники";
             // 
             // menuSpecGuide
             // 
             this.menuSpecGuide.Name = "menuSpecGuide";
-            this.menuSpecGuide.Size = new System.Drawing.Size(224, 26);
+            this.menuSpecGuide.Size = new System.Drawing.Size(180, 22);
             this.menuSpecGuide.Text = "Специальности";
             this.menuSpecGuide.Click += new System.EventHandler(this.menuSpecGuide_Click);
             // 
             // menuGroupGuide
             // 
             this.menuGroupGuide.Name = "menuGroupGuide";
-            this.menuGroupGuide.Size = new System.Drawing.Size(224, 26);
+            this.menuGroupGuide.Size = new System.Drawing.Size(180, 22);
             this.menuGroupGuide.Text = "Учебные группы";
             this.menuGroupGuide.Click += new System.EventHandler(this.menuGroupGuide_Click);
             // 
             // menuStudentsGuide
             // 
             this.menuStudentsGuide.Name = "menuStudentsGuide";
-            this.menuStudentsGuide.Size = new System.Drawing.Size(224, 26);
+            this.menuStudentsGuide.Size = new System.Drawing.Size(180, 22);
             this.menuStudentsGuide.Text = "Студенты";
+            this.menuStudentsGuide.Click += new System.EventHandler(this.menuStudentsGuide_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1237, 630);
+            this.ClientSize = new System.Drawing.Size(928, 512);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Форма отчета СПО-1 (раздел 2.10)";
