@@ -78,7 +78,7 @@ namespace StudentStatistic.Forms
             }
             else
             {
-                MyMessage.MessageNullRow();
+                MyMessage.MessageNullRowDel();
             }
         }
     }

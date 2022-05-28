@@ -21,6 +21,14 @@ namespace StudentStatistic.Classes
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
+        //Отсутствуют строки для удаления
+        public static void MessageNullRowDel()
+        {
+            MessageBox.Show("Отсутствуют строки для удаления",
+                "Информация",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
         //Данные не сохранены
         public static DialogResult MessageClose()
         {

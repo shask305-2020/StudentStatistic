@@ -111,6 +111,7 @@ namespace MySQL_Client
                 txPass.UseSystemPasswordChar = false;
             else
                 txPass.UseSystemPasswordChar = true;
+            txPass.Focus();
         }
 
         //Проверка, сохранены ли настройки
