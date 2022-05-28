@@ -77,6 +77,12 @@
     <Compile Include="Forms\AddSpec.Designer.cs">
       <DependentUpon>AddSpec.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddStudent.Designer.cs">
+      <DependentUpon>AddStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GuideSpec.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,11 +127,17 @@
     <EmbeddedResource Include="Forms\AddSpec.resx">
       <DependentUpon>AddSpec.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddStudent.resx">
+      <DependentUpon>AddStudent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GuideGroups.resx">
       <DependentUpon>GuideGroups.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GuideSpec.resx">
       <DependentUpon>GuideSpec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GuideStudents.resx">
+      <DependentUpon>GuideStudents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

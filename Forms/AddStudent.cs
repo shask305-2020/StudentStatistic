@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace StudentStatistic.Forms
 {
-    public partial class GuideStudents : Form
+    public partial class AddStudent : Form
     {
-        public GuideStudents()
+        public AddStudent()
         {
             InitializeComponent();
-        }
-
-        private void btAdd_Click(object sender, EventArgs e)
-        {
-            AddStudent student = new AddStudent();
-            student.ShowDialog();
         }
     }
 }
