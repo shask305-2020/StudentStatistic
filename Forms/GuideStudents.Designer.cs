@@ -143,7 +143,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "GuideStudents";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Справочник \"Студенты\"";
+            this.Activated += new System.EventHandler(this.GuideStudents_Activated);
             this.Load += new System.EventHandler(this.GuideStudents_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

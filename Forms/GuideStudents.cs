@@ -15,6 +15,11 @@ namespace StudentStatistic.Forms
         {
             LoadGroup();
         }
+        //Обновление данных в таблице при добавлении нового студента
+        private void GuideStudents_Activated(object sender, EventArgs e)
+        {
+            LoadGroup();    //Эксперимент
+        }
         //Загрузка списка групп в ComboBox
         private void LoadGroup()
         {
@@ -26,8 +31,8 @@ namespace StudentStatistic.Forms
         //Добавление новой записи
         private void btAdd_Click(object sender, EventArgs e)
         {
-            AddStudent student = new AddStudent();
-            student.ShowDialog();
+            AddStudent add = new AddStudent();
+            add.ShowDialog();
         }
         //Редактирование записи
         private void EditRow()
@@ -70,17 +75,19 @@ namespace StudentStatistic.Forms
                 MyMessage.MessageNullRowDel();
             }
         }
-        //Смена группы
+        //Загрузка студентов при смене группы
         private void cbGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadData();
+            int id = (int)cbGroup.SelectedValue;
+            LoadData(id);
         }
         //Загрузка данных по студентам
-        private void LoadData()
+        private void LoadData(int id)
         {
-            DataTable table = ClassMySQL.LoadTable("vw_students");
+            DataTable table = ClassMySQL.LoadTable_Filtre("vw_students", "id_group", id);
             dgvStudents.DataSource = table;
             dgvStudents.Columns[0].Visible = false;   //Скрытие столбца с id
+            dgvStudents.Columns[1].Visible = false;   //Скрытие столбца с id_group
             dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;     //Ширина столбцов одинаковая
         }
     }

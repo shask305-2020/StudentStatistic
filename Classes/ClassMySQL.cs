@@ -61,7 +61,7 @@ namespace StudentStatistic.Classes
             return dt;
         }
 
-        //Загрузка данных из БД (по названию таблицы, с фильтром)
+        //Загрузка данных из БД (по названию таблицы, с фильтром по id (ключевое поле))
         public static DataTable LoadTable_Filtre(string tableName, int id)
         {
             sql = string.Format($"SELECT * FROM {db.Database}.{tableName} WHERE id = @id");
@@ -70,6 +70,21 @@ namespace StudentStatistic.Classes
 
             cmd.Parameters.Add("@id", MySqlDbType.Int32);
             cmd.Parameters["@id"].Value = id;
+
+            DataTable dt = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+            return dt;
+        }
+        //Загрузка данных из БД (по названию таблицы, с фильтром по конкретному поле)
+        public static DataTable LoadTable_Filtre(string tableName, string columnName, int value)
+        {
+            sql = string.Format($"SELECT * FROM {db.Database}.{tableName} WHERE {columnName} = @value");
+            cmd = new MySqlCommand(sql, connection);
+            cmd.CommandType = CommandType.Text;
+
+            cmd.Parameters.Add("@value", MySqlDbType.Int32);
+            cmd.Parameters["@value"].Value = value;
 
             DataTable dt = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
