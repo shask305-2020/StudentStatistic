@@ -50,7 +50,7 @@
             // 
             this.txtLevel.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLevel.Location = new System.Drawing.Point(175, 14);
-            this.txtLevel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtLevel.Margin = new System.Windows.Forms.Padding(2);
             this.txtLevel.Name = "txtLevel";
             this.txtLevel.Size = new System.Drawing.Size(441, 24);
             this.txtLevel.TabIndex = 1;
@@ -61,7 +61,7 @@
             this.listLevel.FormattingEnabled = true;
             this.listLevel.ItemHeight = 17;
             this.listLevel.Location = new System.Drawing.Point(20, 46);
-            this.listLevel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listLevel.Margin = new System.Windows.Forms.Padding(2);
             this.listLevel.Name = "listLevel";
             this.listLevel.Size = new System.Drawing.Size(711, 140);
             this.listLevel.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             this.btAdd.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAdd.Location = new System.Drawing.Point(618, 12);
-            this.btAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(110, 26);
             this.btAdd.TabIndex = 3;
@@ -82,7 +82,7 @@
             // 
             this.btDelete.Font = new System.Drawing.Font("Microsoft PhagsPa", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelete.Location = new System.Drawing.Point(19, 192);
-            this.btDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btDelete.Name = "btDelete";
             this.btDelete.Size = new System.Drawing.Size(237, 28);
             this.btDelete.TabIndex = 4;
@@ -92,6 +92,7 @@
             // 
             // AddLevel
             // 
+            this.AcceptButton = this.btAdd;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 226);
@@ -101,7 +102,7 @@
             this.Controls.Add(this.txtLevel);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddLevel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Добавить уровень образования";

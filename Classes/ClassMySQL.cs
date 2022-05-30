@@ -82,10 +82,8 @@ namespace StudentStatistic.Classes
             sql = string.Format($"SELECT * FROM {db.Database}.{tableName} WHERE {columnName} = @value");
             cmd = new MySqlCommand(sql, connection);
             cmd.CommandType = CommandType.Text;
-
             cmd.Parameters.Add("@value", MySqlDbType.Int32);
             cmd.Parameters["@value"].Value = value;
-
             DataTable dt = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
             adapter.Fill(dt);
@@ -93,9 +91,9 @@ namespace StudentStatistic.Classes
         }
 
         //Добавление данных в таблицу (если нужно вставить значение в одно поле)
-        public static void AddRow(string tableName, string value)
+        public static void AddRow(string tableName, string columnName, string value)
         {
-            sql = string.Format($"INSERT INTO {db.Database}.{tableName} VALUES (@value)");
+            sql = string.Format($"INSERT INTO {db.Database}.{tableName} ({columnName}) VALUES (@value)");
             cmd = new MySqlCommand(sql, connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@value", value);
@@ -143,26 +141,6 @@ namespace StudentStatistic.Classes
             cmd.Parameters["@name"].Value = name;
 
             BlokTry();
-        }
-        
-        //Блок Try - Catch
-        private static void BlokTry()
-        {
-            try
-            {
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MyMessage.MessageDeleteError(ex);
-            }
-            finally
-            {
-                if (connection.State != ConnectionState.Closed)
-                    connection.Close();
-            }
         }
 
         //Добавление строки в таблицу "Специальности"
@@ -214,18 +192,78 @@ namespace StudentStatistic.Classes
 
             BlokTry();
         }
+        //Блок Try - Catch для общих операций
+        private static void BlokTry()
+        {
+            try
+            {
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MyMessage.MessageError(ex);
+            }
+            finally
+            {
+                if (connection.State != ConnectionState.Closed)
+                    connection.Close();
+            }
+        }
+
+        //Добавление данных в таблицу "Студенты"
+        public static void AddRow_Student(int id_group, string fam, string name, string otch, int id_gender, DateTime bDate, int year)
+        {
+            sql = string.Format($"INSERT INTO {db.Database}.students (id_group, fam, name, otch, birthday, id_gender, year_of_admission) " +
+                $"VALUES (@id_group, @fam, @name, @otch, @birthday, @id_gender, @year_of_admission)");
+            cmd = new MySqlCommand(sql, connection);
+            cmd.CommandType = CommandType.Text;
+                //Параметры (перменные)
+            cmd.Parameters.Add("@id_group", MySqlDbType.Int32);
+            cmd.Parameters.Add("@fam", MySqlDbType.VarChar, 45);
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar, 45);
+            cmd.Parameters.Add("@otch", MySqlDbType.VarChar, 45);
+            cmd.Parameters.Add("@birthday", MySqlDbType.Date);
+            cmd.Parameters.Add("@id_gender", MySqlDbType.Int32);
+            cmd.Parameters.Add("@year_of_admission", MySqlDbType.Int32);
+                //Присваивание переменным значений
+            cmd.Parameters["@id_group"].Value = id_group;
+            cmd.Parameters["@fam"].Value = fam;
+            cmd.Parameters["@name"].Value = name;
+            cmd.Parameters["@otch"].Value = otch;
+            cmd.Parameters["@id_gender"].Value = id_gender;
+            cmd.Parameters["@birthday"].Value = bDate;
+            cmd.Parameters["@year_of_admission"].Value = year;
+
+            BlokTry();
+        }
 
         //Удаление строки в БД (по таблице)
         public static void DeleteRow(string tableName, int id)
         {
             //Пока команда, в будущем планирую создать хранимую роцедуру
             sql = string.Format($"DELETE FROM {db.Database}.{tableName} WHERE id = @id");
-            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            cmd = new MySqlCommand(sql, connection);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.Add("@id", MySqlDbType.Int32);
             cmd.Parameters["@id"].Value = id;
-
-            BlokTry();
+            try
+            {
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MyMessage.MessageDeleteError(ex);
+            }
+            finally
+            {
+                if (connection.State != ConnectionState.Closed)
+                    connection.Close();
+            }
         }
+
     }
 }

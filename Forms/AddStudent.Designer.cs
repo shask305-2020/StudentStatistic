@@ -126,7 +126,7 @@
             // 
             this.txFam.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txFam.Location = new System.Drawing.Point(155, 6);
-            this.txFam.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txFam.Margin = new System.Windows.Forms.Padding(2);
             this.txFam.Name = "txFam";
             this.txFam.Size = new System.Drawing.Size(242, 26);
             this.txFam.TabIndex = 1;
@@ -135,7 +135,7 @@
             // 
             this.txName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txName.Location = new System.Drawing.Point(155, 36);
-            this.txName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txName.Margin = new System.Windows.Forms.Padding(2);
             this.txName.Name = "txName";
             this.txName.Size = new System.Drawing.Size(242, 26);
             this.txName.TabIndex = 2;
@@ -144,7 +144,7 @@
             // 
             this.txOtch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txOtch.Location = new System.Drawing.Point(155, 66);
-            this.txOtch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txOtch.Margin = new System.Windows.Forms.Padding(2);
             this.txOtch.Name = "txOtch";
             this.txOtch.Size = new System.Drawing.Size(242, 26);
             this.txOtch.TabIndex = 3;
@@ -154,7 +154,7 @@
             this.cbGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cbGroup.FormattingEnabled = true;
             this.cbGroup.Location = new System.Drawing.Point(155, 96);
-            this.cbGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbGroup.Margin = new System.Windows.Forms.Padding(2);
             this.cbGroup.Name = "cbGroup";
             this.cbGroup.Size = new System.Drawing.Size(242, 28);
             this.cbGroup.TabIndex = 4;
@@ -198,6 +198,7 @@
             this.btAdd.TabIndex = 8;
             this.btAdd.Text = "Добавить";
             this.btAdd.UseVisualStyleBackColor = true;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // AddStudent
             // 
@@ -221,7 +222,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Студент";

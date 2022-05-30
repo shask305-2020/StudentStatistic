@@ -5,6 +5,14 @@ namespace StudentStatistic.Classes
 {
     internal static class MyMessage
     {
+        //Ошибка операции
+        public static void MessageError(Exception ex)
+        {
+            MessageBox.Show("Изменения не были применены\n" + ex.Message,
+                    "Ошибка операции",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         //Заполните все обязательные поля
         public static void MessageInformation()
         {

@@ -115,6 +115,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Справочник \"Специальности\"";
             this.Activated += new System.EventHandler(this.GuideSpec_Activated);
+            this.Load += new System.EventHandler(this.GuideSpec_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

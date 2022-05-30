@@ -55,8 +55,6 @@ namespace StudentStatistic.Forms
         {
             Load_tabLevel();
             Load_tabBase();
-            cbLevel.SelectedValue = id_level;
-            cbBase.SelectedValue = id_base;
         }
         //Добавление записи в БД (или изменение, если mode=Edit)
         private void btAdd_Click(object sender, EventArgs e)

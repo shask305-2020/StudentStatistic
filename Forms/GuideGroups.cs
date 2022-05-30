@@ -77,13 +77,14 @@ namespace StudentStatistic.Forms
         {
             if (dataGridView1.Rows.Count > 0)
             {
+                int rowIndex = dataGridView1.CurrentCell.RowIndex;
                 DialogResult result = MyMessage.MessageDeletRow();
                 if (result == DialogResult.Yes)
                 {
-                    int rowIndex = dataGridView1.CurrentCell.RowIndex;
                     int id = Convert.ToInt32(dataGridView1.Rows[rowIndex].Cells[0].Value);
                     ClassMySQL.DeleteRow("groups", id);
                 }
+                LoadData();
             }
             else
             {

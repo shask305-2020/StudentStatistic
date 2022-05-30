@@ -18,7 +18,7 @@ namespace StudentStatistic.Forms
         //Обновление данных в таблице при добавлении нового студента
         private void GuideStudents_Activated(object sender, EventArgs e)
         {
-            LoadGroup();    //Эксперимент
+            LoadGroup();
         }
         //Загрузка списка групп в ComboBox
         private void LoadGroup()

@@ -11,12 +11,14 @@ namespace StudentStatistic.Forms
         {
             InitializeComponent();
         }
-
+        private void GuideSpec_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
         //Обновление таблицы с данными
         private void GuideSpec_Activated(object sender, EventArgs e)
         {
             LoadData();
-            dataGridView1.Rows[0].Cells[1].Selected = true;
         }
         
         //Загрузка данных
@@ -68,13 +70,14 @@ namespace StudentStatistic.Forms
         {
             if (dataGridView1.Rows.Count > 0)
             {
+                int rowIndex = dataGridView1.CurrentCell.RowIndex;
                 DialogResult result = MyMessage.MessageDeletRow();
                 if (result == DialogResult.Yes)
                 {
-                    int rowIndex = dataGridView1.CurrentCell.RowIndex;
                     int id = Convert.ToInt32(dataGridView1.Rows[rowIndex].Cells[0].Value);
                     ClassMySQL.DeleteRow("spec", id);
                 }
+                LoadData();
             }
             else
             {

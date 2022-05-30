@@ -29,7 +29,7 @@ namespace StudentStatistic.Forms
         {
             if (txtLevel.Text != "")
             {
-                ClassMySQL.AddRow("level", txtLevel.Text);
+                ClassMySQL.AddRow("level", "level", txtLevel.Text);
                 txtLevel.Clear();
                 LoadLevel();
             }
