@@ -57,7 +57,7 @@ namespace StudentStatistic.Forms
                 edit.ShowDialog();
             }
             else
-                MyMessage.MessageNullRow();
+                MyMessage.MessageNullRowEdit();
         }
 
         //Редактирование выделенной строки (по кнопке "Редактировать")

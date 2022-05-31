@@ -42,7 +42,8 @@ namespace StudentStatistic.Forms
                 LoadBase();
             }
             else
-                MessageBox.Show("Введите наименование базы образования");
+                MessageBox.Show("Введите наименование базы образования", "Информация",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //Удаление выделенного пункта
@@ -59,7 +60,7 @@ namespace StudentStatistic.Forms
                 }
             }
             else
-                MyMessage.MessageNullRow();
+                MyMessage.MessageNullRowEdit();
         }
     }
 }

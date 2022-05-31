@@ -45,7 +45,7 @@ namespace StudentStatistic.Forms
                 edit.ShowDialog();
             }
             else
-                MyMessage.MessageNullRow();
+                MyMessage.MessageNullRowEdit();
         }
         //Редактирование записи (нажатие на кнопку "Редактировать")
         private void btEdit_Click(object sender, EventArgs e)
@@ -62,18 +62,16 @@ namespace StudentStatistic.Forms
         {
             if (dgvStudents.Rows.Count > 0)
             {
+                int rowIndex = dgvStudents.CurrentCell.RowIndex;
                 DialogResult result = MyMessage.MessageDeletRow();
                 if (result == DialogResult.Yes)
                 {
-                    int rowIndex = dgvStudents.CurrentCell.RowIndex;
                     int id = Convert.ToInt32(dgvStudents.Rows[rowIndex].Cells[0].Value);
                     ClassMySQL.DeleteRow("students", id);
                 }
             }
             else
-            {
                 MyMessage.MessageNullRowDel();
-            }
         }
         //Загрузка студентов при смене группы
         private void cbGroup_SelectedIndexChanged(object sender, EventArgs e)

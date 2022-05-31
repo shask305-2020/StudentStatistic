@@ -8,7 +8,7 @@ namespace StudentStatistic.Classes
         //Ошибка операции
         public static void MessageError(Exception ex)
         {
-            MessageBox.Show("Изменения не были применены\n" + ex.Message,
+            MessageBox.Show("Изменения не были применены\n\n" + ex.Message,
                     "Ошибка операции",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -16,19 +16,21 @@ namespace StudentStatistic.Classes
         //Заполните все обязательные поля
         public static void MessageInformation()
         {
-            MessageBox.Show("Заполните все обязательные поля\n(Отмечены звездочкой)",
+            MessageBox.Show("Заполните все обязательные поля",
                 "Информация",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
+
         //Отсутствуют строки для редактирования
-        public static void MessageNullRow()
+        public static void MessageNullRowEdit()
         {
             MessageBox.Show("Отсутствуют строки для редактирования",
                 "Информация",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
+
         //Отсутствуют строки для удаления
         public static void MessageNullRowDel()
         {
@@ -37,7 +39,8 @@ namespace StudentStatistic.Classes
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
-        //Данные не сохранены
+
+        //Данные не сохранены при выходе из формы
         public static DialogResult MessageClose()
         {
             DialogResult result;
@@ -48,9 +51,8 @@ namespace StudentStatistic.Classes
                     MessageBoxDefaultButton.Button2);
             return result;
         }
-
-
-        //Удаление
+        
+        // Удаление
         //Вы уверены, что хотите удалить строку?
         public static DialogResult MessageDeletRow()
         {
@@ -62,6 +64,7 @@ namespace StudentStatistic.Classes
                     MessageBoxDefaultButton.Button2);
             return result;
         }
+
         //Нельзя удалить данные
         public static void MessageDeleteError(Exception ex)
         {
