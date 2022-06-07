@@ -37,6 +37,27 @@ namespace StudentStatistic.Forms
             InitializeComponent();
             _mode = "Edit";
             _id = id;
+            LoadText();
+        }
+
+        private void LoadText()
+        {
+            DataTable table = ClassMySQL.LoadTable_Filtre("students", _id);
+            _group = Convert.ToInt32(table.Rows[0]["id_group"]);
+            _fam = table.Rows[0]["fam"].ToString();
+            _name = table.Rows[0]["name"].ToString();
+            _otch = table.Rows[0]["otch"].ToString();
+            _birthday = Convert.ToDateTime(table.Rows[0]["birthday"]);
+            _gender = Convert.ToInt32(table.Rows[0]["id_gender"]);
+            _year = Convert.ToInt32(table.Rows[0]["year_of_admission"]);
+
+            cbGroup.SelectedValue = _group;
+            txFam.Text = _fam;
+            txName.Text = _name;
+            txOtch.Text = _otch;
+            dateBirth.Value = _birthday;
+            cbGender.SelectedValue = _gender;
+            txYear.Text = _year.ToString();
         }
 
         private void AddStudent_Load(object sender, EventArgs e)
@@ -44,6 +65,7 @@ namespace StudentStatistic.Forms
             ReNameButton();
             LoadGroup();
             LoadGender();
+            KeyPreview = true;  //Позволяет отлавливать нажатие кнопок (для клавиши Escape)
         }
         //Переименование элементов в зависимости от режима
         private void ReNameButton()
@@ -76,25 +98,17 @@ namespace StudentStatistic.Forms
         //Добавление данных о студенте в БД
         private void btAdd_Click(object sender, EventArgs e)
         {
-            switch (_mode)
-            {
-                case "Add":
-                    Add();
-                    break;
-                case "Edit":
-                    //Edit();
-                    break;
-                default:
-                    break;
-            }
+            if (_mode == "Add")
+                Add();
+            else
+                Edit();
         }
         //Добавление записи в таблицу "Студенты"
         private void Add()
         {
             if (Valid())
             {
-                UpdatePole();
-
+                WriteField();
                 ClassMySQL.AddRow_Student(_group, _fam, _name, _otch, _gender, _birthday, _year);
                 _completed = true;
                 Close();
@@ -102,8 +116,21 @@ namespace StudentStatistic.Forms
             else
                 MyMessage.MessageInformation();
         }
+        //Редактирование записи
+        private void Edit()
+        {
+            if (Valid())
+            {
+                WriteField();
+                ClassMySQL.EditRow_Student(_id, _group, _fam, _name, _otch, _gender, _birthday, _year);
+                _completed = true;
+                Close();
+            }
+            else
+                MyMessage.MessageInformation();
+        }
         //Обновление полей
-        private void UpdatePole()
+        private void WriteField()
         {
             _group = (int)cbGroup.SelectedValue;
             _fam = txFam.Text;
@@ -124,7 +151,24 @@ namespace StudentStatistic.Forms
                 return true;
             else return false;
         }
-
-        
+        //Выход из окна
+        //Подтверждение выхода
+        private void AddStudent_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!_completed && Valid())
+            {
+                DialogResult result = MyMessage.MessageClose();
+                if (result == DialogResult.No)
+                    e.Cancel = true;
+            }
+        }
+        //Обработка нажатия клавиши Escape (Выход из режима редактирования, без сохранения)
+        private void AddStudent_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
     }
 }

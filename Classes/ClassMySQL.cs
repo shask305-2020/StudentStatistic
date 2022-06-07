@@ -90,6 +90,8 @@ namespace StudentStatistic.Classes
             return dt;
         }
 
+        
+
         //Добавление данных в таблицу (если нужно вставить значение в одно поле)
         public static void AddRow(string tableName, string columnName, string value)
         {
@@ -192,7 +194,7 @@ namespace StudentStatistic.Classes
 
             BlokTry();
         }
-        //Блок Try - Catch для общих операций
+        //Блок Try-Catch для общих операций
         private static void BlokTry()
         {
             try
@@ -219,7 +221,7 @@ namespace StudentStatistic.Classes
                 $"VALUES (@id_group, @fam, @name, @otch, @birthday, @id_gender, @year_of_admission)");
             cmd = new MySqlCommand(sql, connection);
             cmd.CommandType = CommandType.Text;
-                //Параметры (перменные)
+                //Параметры (переменные)
             cmd.Parameters.Add("@id_group", MySqlDbType.Int32);
             cmd.Parameters.Add("@fam", MySqlDbType.VarChar, 45);
             cmd.Parameters.Add("@name", MySqlDbType.VarChar, 45);
@@ -238,8 +240,35 @@ namespace StudentStatistic.Classes
 
             BlokTry();
         }
+        internal static void EditRow_Student(int id_student, int id_group, string fam, string name, string otch, int id_gender, DateTime bDate, int year)
+        {
+            sql = string.Format($"UPDATE {db.Database}.students SET id_group = @id_group, fam = @fam, name = @name, otch = @otch, " +
+                $"birthday = @birthday, id_gender = @id_gender, year_of_admission = @year_of_admission WHERE id = @id_student");
+            cmd = new MySqlCommand(sql, connection);
+            cmd.CommandType = CommandType.Text;
+            //Параметры (переменные)
+            cmd.Parameters.Add("@id_student", MySqlDbType.Int32);
+            cmd.Parameters.Add("@id_group", MySqlDbType.Int32);
+            cmd.Parameters.Add("@fam", MySqlDbType.VarChar, 45);
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar, 45);
+            cmd.Parameters.Add("@otch", MySqlDbType.VarChar, 45);
+            cmd.Parameters.Add("@birthday", MySqlDbType.Date);
+            cmd.Parameters.Add("@id_gender", MySqlDbType.Int32);
+            cmd.Parameters.Add("@year_of_admission", MySqlDbType.Int32);
+            //Присваивание переменным значений
+            cmd.Parameters["@id_student"].Value = id_student;
+            cmd.Parameters["@id_group"].Value = id_group;
+            cmd.Parameters["@fam"].Value = fam;
+            cmd.Parameters["@name"].Value = name;
+            cmd.Parameters["@otch"].Value = otch;
+            cmd.Parameters["@id_gender"].Value = id_gender;
+            cmd.Parameters["@birthday"].Value = bDate;
+            cmd.Parameters["@year_of_admission"].Value = year;
 
-        //Удаление строки в БД (по таблице)
+            BlokTry();
+        }
+
+        //Удаление строки в БД (по названию таблицы и id)
         public static void DeleteRow(string tableName, int id)
         {
             //Пока команда, в будущем планирую создать хранимую роцедуру
@@ -264,6 +293,5 @@ namespace StudentStatistic.Classes
                     connection.Close();
             }
         }
-
     }
 }

@@ -42,10 +42,10 @@ namespace StudentStatistic.Forms
         {
             if (listLevel.Items.Count > 0)
             {
+                int id = Convert.ToInt32(listLevel.SelectedValue);
                 DialogResult result = MyMessage.MessageDeletRow();
                 if (result == DialogResult.Yes)
                 {
-                    int id = Convert.ToInt32(listLevel.SelectedValue);
                     ClassMySQL.DeleteRow("level", id);
                     LoadLevel();
                 }

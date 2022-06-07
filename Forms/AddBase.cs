@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using StudentStatistic.Classes;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using StudentStatistic.Classes;
 
 namespace StudentStatistic.Forms
 {
@@ -51,10 +45,10 @@ namespace StudentStatistic.Forms
         {
             if (listBase.Items.Count > 0)
             {
+                int id = Convert.ToInt32(listBase.SelectedValue);
                 DialogResult result = MyMessage.MessageDeletRow();
                 if (result == DialogResult.Yes)
                 {
-                    int id = Convert.ToInt32(listBase.SelectedValue);
                     ClassMySQL.DeleteRow("base", id);
                     LoadBase();
                 }

@@ -225,8 +225,9 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Студент";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddStudent_FormClosing);
             this.Load += new System.EventHandler(this.AddStudent_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddStudent_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
