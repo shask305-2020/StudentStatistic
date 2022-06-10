@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Encryption, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Encryption.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\MySql.Data.dll</HintPath>
@@ -83,6 +87,12 @@
     <Compile Include="Forms\AddStudent.Designer.cs">
       <DependentUpon>AddStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Autentification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Autentification.Designer.cs">
+      <DependentUpon>Autentification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GuideSpec.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +140,9 @@
     <EmbeddedResource Include="Forms\AddStudent.resx">
       <DependentUpon>AddStudent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Autentification.resx">
+      <DependentUpon>Autentification.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GuideGroups.resx">
       <DependentUpon>GuideGroups.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,6 +181,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Encryption.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="MySql.Data.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

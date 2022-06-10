@@ -28,6 +28,21 @@ namespace StudentStatistic.Forms
             cbGroup.ValueMember = "id";
             cbGroup.DataSource = table;
         }
+        //Загрузка студентов при смене группы
+        private void cbGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = (int)cbGroup.SelectedValue;
+            LoadData(id);
+        }
+        //Загрузка данных по студентам
+        private void LoadData(int id)
+        {
+            DataTable table = ClassMySQL.LoadTable_Filtre("vw_students", "id_group", id);
+            dgvStudents.DataSource = table;
+            dgvStudents.Columns[0].Visible = false;   //Скрытие столбца с id
+            dgvStudents.Columns[1].Visible = false;   //Скрытие столбца с id_group
+            dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;     //Ширина столбцов одинаковая
+        }
         //Добавление новой записи
         private void btAdd_Click(object sender, EventArgs e)
         {
@@ -72,21 +87,6 @@ namespace StudentStatistic.Forms
             }
             else
                 MyMessage.MessageNullRowDel();
-        }
-        //Загрузка студентов при смене группы
-        private void cbGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = (int)cbGroup.SelectedValue;
-            LoadData(id);
-        }
-        //Загрузка данных по студентам
-        private void LoadData(int id)
-        {
-            DataTable table = ClassMySQL.LoadTable_Filtre("vw_students", "id_group", id);
-            dgvStudents.DataSource = table;
-            dgvStudents.Columns[0].Visible = false;   //Скрытие столбца с id
-            dgvStudents.Columns[1].Visible = false;   //Скрытие столбца с id_group
-            dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;     //Ширина столбцов одинаковая
         }
     }
 }

@@ -8,10 +8,10 @@ namespace StudentStatistic
 {
     public partial class MainForm : Form
     {
-        private string serverName = Properties.Settings.Default.server;
-        private string dbName = Properties.Settings.Default.database;
-        private string login = Properties.Settings.Default.login;
-        private string password = Properties.Settings.Default.pass;
+        private string _serverName = Properties.Settings.Default.server;
+        private string _dbName = Properties.Settings.Default.database;
+        private string _login = Properties.Settings.Default.login;
+        private string _password = Properties.Settings.Default.pass;
         public MainForm()
         {
             InitializeComponent();
@@ -20,7 +20,7 @@ namespace StudentStatistic
         //Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
-            ClassMySQL.CheckConnect(serverName, dbName, login, password);     //Проверка соединения с БД при загрузке программы
+            ClassMySQL.CheckConnect(_serverName, _dbName, _login, _password);     //Проверка соединения с БД при загрузке программы
         }
 
         //Открытие окна с настройками соединения

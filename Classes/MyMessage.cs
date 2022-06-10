@@ -13,6 +13,13 @@ namespace StudentStatistic.Classes
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        //Настройки сохранены
+        public static void MessageSaveSettings()
+        {
+            MessageBox.Show("Соединение установлено\nНастрйки сохранены и применены",
+                    "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         //Заполните все обязательные поля
         public static void MessageInformation()
         {

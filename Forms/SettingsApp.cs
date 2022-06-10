@@ -1,21 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using StudentStatistic;
+﻿using StudentStatistic.Properties;
 using StudentStatistic.Classes;
+using System;
+using System.Windows.Forms;
+using Encryption;
 
 namespace MySQL_Client
 {
     public partial class SettingsApp : Form
     {
-        //Переменные, в оторых сохраняются данные из поле ввода
-        private string ser, db, log, pas;
+        //Переменные, в которых сохраняются данные из полей ввода
+        private string _ser, _db, _log, _pas;
+
+        //Поля дешифрованных логина и пароля
+        private string _user, _password;
+
+        //Шифрование логина и пароля
+        private string User
+        {
+            get
+            {
+                _user = Shifr.GetShifr(Settings.Default.login, 12);
+                return _user;
+            }
+            set
+            {
+                _user = value;
+                Settings.Default.login = Shifr.SetShifr(_user, 12);
+            }
+        }
+        private string Password { get; set; }
+
         public SettingsApp()
         {
             InitializeComponent();
@@ -30,19 +44,20 @@ namespace MySQL_Client
         //Заполнение переменных значениями из полей ввода
         private void WriteVariable()
         {
-            ser = txServerName.Text;
-            db = txDBname.Text;
-            log = txLogin.Text;
-            pas = txPass.Text;
+            _ser = txServerName.Text;
+            _db = txDBname.Text;
+            _log = txLogin.Text;
+            _pas = txPass.Text;
         }
 
         //Загрузка сохраненных настроек
         private void LoadSettings()
         {
-            txServerName.Text = StudentStatistic.Properties.Settings.Default.server;
-            txDBname.Text = StudentStatistic.Properties.Settings.Default.database;
-            txLogin.Text = StudentStatistic.Properties.Settings.Default.login;
-            txPass.Text = StudentStatistic.Properties.Settings.Default.pass;
+            txServerName.Text = Settings.Default.server;
+            txDBname.Text = Settings.Default.database;
+            txLogin.Text = Settings.Default.login;
+            _password = Shifr.GetShifr(Settings.Default.pass, 12);
+            txPass.Text = Shifr.GetShifr(Settings.Default.pass, 12);
             WriteVariable();
         }
 
@@ -50,10 +65,10 @@ namespace MySQL_Client
         private bool Valid()
         {
             WriteVariable();
-            bool server = ser != "";
-            bool dbN = db != "";
-            bool login = log != "";
-            bool pass = pas != "";
+            bool server = _ser != "";
+            bool dbN = _db != "";
+            bool login = _log != "";
+            bool pass = _pas != "";
             if (server && dbN && login && pass)
                 return true;
             else
@@ -63,11 +78,11 @@ namespace MySQL_Client
         //Сохранение настроек
         private void SaveSettings()
         {
-            StudentStatistic.Properties.Settings.Default.server = ser;
-            StudentStatistic.Properties.Settings.Default.database = db;
-            StudentStatistic.Properties.Settings.Default.login = log;
-            StudentStatistic.Properties.Settings.Default.pass = pas;
-            StudentStatistic.Properties.Settings.Default.Save();
+            Settings.Default.server = _ser;
+            Settings.Default.database = _db;
+            Settings.Default.login = _log;
+            Settings.Default.pass = _pas;
+            Settings.Default.Save();
         }
 
         //Кнопка "Примененить настройки"
@@ -75,18 +90,17 @@ namespace MySQL_Client
         {
             if (Valid())
             {
-                bool check = ClassMySQL.CheckConnect(ser, db, log, pas);
+                bool check = ClassMySQL.CheckConnect(_ser, _db, _log, _pas);
                 if (!check)
                     return;
                 SaveSettings();
-                ClassMySQL.DB_Load(ser, db, log, pas);
-                MessageBox.Show("Соединение установлено\nНастрйки сохранены и применены",
-                    "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClassMySQL.DB_Load(_ser, _db, _log, _pas);
+                MyMessage.MessageSaveSettings();
                 Close();
             }
             else
             {
-                MessageBox.Show("Проверьте корректность заполнения всех полей");
+                MyMessage.MessageInformation();
             }
         }
 
@@ -95,10 +109,7 @@ namespace MySQL_Client
         {
             if (CheckSaveSettings())
             {
-                DialogResult dialog = MessageBox.Show("Данные не сохранены!\nВы желаете выйти из пограммы?", 
-                    "Внимание!", 
-                    MessageBoxButtons.YesNo, 
-                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                DialogResult dialog = MyMessage.MessageClose();
                 if (dialog == DialogResult.No)
                     e.Cancel = true;
             }
@@ -117,10 +128,10 @@ namespace MySQL_Client
         //Проверка, сохранены ли настройки
         private bool CheckSaveSettings()
         {
-            bool server = ser != StudentStatistic.Properties.Settings.Default.server;
-            bool dbN = db != StudentStatistic.Properties.Settings.Default.database;
-            bool login = log != StudentStatistic.Properties.Settings.Default.login;
-            bool pass = pas != StudentStatistic.Properties.Settings.Default.pass;
+            bool server = _ser != Settings.Default.server;
+            bool dbN = _db != Settings.Default.database;
+            bool login = _log != Settings.Default.login;
+            bool pass = _pas != Settings.Default.pass;
             if (server || dbN || login || pass)
                 return true;
             else
@@ -130,19 +141,19 @@ namespace MySQL_Client
         //Изменение данных в формах ввода
         private void txServerName_TextChanged(object sender, EventArgs e)
         {
-            ser = txServerName.Text;
+            _ser = txServerName.Text;
         }
         private void txDBname_TextChanged(object sender, EventArgs e)
         {
-            db = txDBname.Text;
+            _db = txDBname.Text;
         }
         private void txLogin_TextChanged(object sender, EventArgs e)
         {
-            log = txLogin.Text;
+            _log = txLogin.Text;
         }
         private void txPass_TextChanged(object sender, EventArgs e)
         {
-            pas = txPass.Text;
+            _pas = txPass.Text;
         }
     }
 }

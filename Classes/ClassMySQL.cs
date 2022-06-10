@@ -155,7 +155,7 @@ namespace StudentStatistic.Classes
             cmd.CommandType = CommandType.Text;
                 //Параметры (перменные)
             cmd.Parameters.Add("@code", MySqlDbType.VarChar, 10);
-            cmd.Parameters.Add("@name", MySqlDbType.VarChar, 45);
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar, 100);
             cmd.Parameters.Add("@sokr", MySqlDbType.VarChar, 45);
             cmd.Parameters.Add("@id_level", MySqlDbType.Int32);
             cmd.Parameters.Add("@id_base", MySqlDbType.Int32);
